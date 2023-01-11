@@ -1,0 +1,100 @@
+let myLibrary = [];
+
+function Book(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+    this.info = function() {
+        return this.title +
+         " by " + this.author + ", " +
+          pages +
+           " pages, " +
+           (read === false ? "not read yet." : "read.");
+    }
+}
+
+function addBookToLibrary(title, author, pages, read) {
+    let newBook = new Book(title, author, pages, read);
+    myLibrary.push(newBook);
+}
+
+function createCards() {
+    for (let i = 0; i < myLibrary.length; i++) {
+        createBookCard(myLibrary[i]);
+    }
+}
+
+function createBookCard(book) {
+    const cardContainer = document.querySelector('.book-cards');
+    const newBookHtml = getBookHtml(book);
+    cardContainer.innerHTML = newBookHtml + cardContainer.innerHTML;
+}
+
+function getBookHtml(book) {
+    const htmlCard = 
+    `<div class="card">
+        <button class="material-symbols-outlined close">close</button>
+        <div class="top">
+            <div class="book-title">${book.title}</div>
+            <div class="author">${book.author}</div>
+            <div class="pages">${book.pages} <span>pages</span></div>
+        </div>
+        <div class="bottom">
+            <label for="read">Read</label>
+            <input type="checkbox" name="read" id="read" ${book.read ? 'checked' : 'unchecked'}>
+        </div>
+    </div>`
+    return htmlCard;
+}
+
+function openBookForm() {
+    if (document.querySelector('.card form') !== null) return;
+
+    const htmlForm = 
+    `<div class="card form">
+        <button class="material-symbols-outlined close">close</button>
+        <form>
+            <div class="top">
+                <input class="book-title" type="text" name="bookname" id="bookname" placeholder="Book name" required>
+                <input class="author" type="text" name="author" id="author" placeholder="Author" required>
+                <input class="pages" type="number" name="pages" id="pages" placeholder="Page count" required>
+            </div>
+            <div class="bottom">
+                <button class="confirm" type="submit">Confirm</button>
+                <div class="check">
+                    <label for="read">Read</label>
+                    <input type="checkbox" name="read" id="read">
+                </div>
+            </div>
+        </form>
+    </div>`;
+    const cardContainer = document.querySelector('.book-cards');
+    let currentHtml = cardContainer.innerHTML;
+    cardContainer.innerHTML = htmlForm + currentHtml;
+    document.querySelector("input.book-title").focus();
+    let form = document.querySelector('form');
+    form.onsubmit = confirmButtonClick;
+}
+
+function confirmButtonClick(event) {
+    event.preventDefault();
+    let newBook = getBookFromForm();
+    addBookToLibrary(newBook);
+    createBookCard(newBook);
+    document.querySelector('.card.form').remove();
+}
+
+function getBookFromForm() {
+    const title = document.querySelector('input.book-title').value;
+    const author = document.querySelector('input.author').value;
+    const pages = document.querySelector('input.pages').value;
+    const checked = document.getElementById('read').checked;
+    return new Book(title, author, pages, checked);
+}
+
+addBookToLibrary('Lord of the Rings', 'Tolkien', 450, true);
+addBookToLibrary('Spider-man', 'Marvel', 57, false);
+addBookToLibrary('1984', 'George Orwell', 423, true);
+
+createCards();

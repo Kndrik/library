@@ -4,16 +4,35 @@
     <meta charset="UTF-8">
     <title>Library</title>
     <link rel="stylesheet" href="style.css">
-    <script src="style.css"></script>
+    <script src="app.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
     <div class="wrapper">
         <div class="header">
             <p class="title">LIBRARY</p>
-            <button>+ Add Book</button>
+            <button onclick="openBookForm()">+ Add Book</button>
         </div>
-        <div class="content"></div>
+        <div class="content">
+            <div class="book-cards">
+                <div class="card">
+                    <button class="material-symbols-outlined close">close</button>
+                    <div class="top">
+                        <div class="book-title">Lord Of The Rings</div>
+                        <div class="author">J.R.R Tolkien</div>
+                        <div class="pages">435 <span>pages</span></div>
+                    </div>
+                    <div class="bottom">
+                        <label for="read">Read</label>
+                        <input type="checkbox" name="read" id="read">
+                    </div>
+                </div>
+
+                
+
+            </div>
+        </div>
         <div class="footer">
             <p>@Charles Lamarque</p>
         </div>
