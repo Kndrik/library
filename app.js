@@ -80,9 +80,12 @@ function openBookForm() {
 
 function confirmButtonClick(event) {
     event.preventDefault();
-    let newBook = getBookFromForm();
-    myLibrary.push(newBook);
-    createBookCard(newBook);
+    const title = document.querySelector('input.book-title').value;
+    const author = document.querySelector('input.author').value;
+    const pages = document.querySelector('input.pages').value;
+    const checked = document.getElementById('read').checked;
+    addBookToLibrary(title, author, pages, checked);
+    createBookCard(myLibrary[myLibrary.length-1]);
     document.querySelector('.card.form').remove();
 }
 
