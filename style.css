@@ -117,7 +117,8 @@ form {
 }
 
 .book-title {
-    text-transform: uppercase;
+    width: 90%;
+    overflow: hidden;
     font-weight: bold;
     font-size: 1.5rem;
     color: var(--main-pop-color)
@@ -161,6 +162,7 @@ input[type="number"] {
 
 input[type="checkbox"] {
     margin-left: 5px;
+    height: auto;
 }
 
 button.confirm {

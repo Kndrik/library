@@ -32,17 +32,18 @@ function createBookCard(book) {
 }
 
 function getBookHtml(book) {
+    const index = myLibrary.findIndex((value) => value.title === book.title && value.pages === book.pages);
     const htmlCard = 
-    `<div class="card">
-        <button class="material-symbols-outlined close">close</button>
+    `<div class="card" index="${index}">
+        <button class="material-symbols-outlined close" index="${index}" onclick="removeBook(${index})">close</button>
         <div class="top">
             <div class="book-title">${book.title}</div>
             <div class="author">${book.author}</div>
             <div class="pages">${book.pages} <span>pages</span></div>
         </div>
         <div class="bottom">
-            <label for="read">Read</label>
-            <input type="checkbox" name="read" id="read" ${book.read ? 'checked' : 'unchecked'}>
+            <label for="${book.title}ID">Read</label>
+            <input type="checkbox" name="read" id="${book.title}ID" index="${index}" ${book.read ? 'checked' : 'unchecked'}>
         </div>
     </div>`
     return htmlCard;
@@ -53,7 +54,7 @@ function openBookForm() {
 
     const htmlForm = 
     `<div class="card form">
-        <button class="material-symbols-outlined close">close</button>
+        <button class="material-symbols-outlined close" onclick="removeForm()">close</button>
         <form>
             <div class="top">
                 <input class="book-title" type="text" name="bookname" id="bookname" placeholder="Book name" required>
@@ -80,7 +81,7 @@ function openBookForm() {
 function confirmButtonClick(event) {
     event.preventDefault();
     let newBook = getBookFromForm();
-    addBookToLibrary(newBook);
+    myLibrary.push(newBook);
     createBookCard(newBook);
     document.querySelector('.card.form').remove();
 }
@@ -91,6 +92,14 @@ function getBookFromForm() {
     const pages = document.querySelector('input.pages').value;
     const checked = document.getElementById('read').checked;
     return new Book(title, author, pages, checked);
+}
+
+function removeBook(index) {
+    document.querySelector(`.card[index="${index}"]`).remove();
+}
+
+function removeForm() {
+    document.querySelector('.card.form').remove();
 }
 
 addBookToLibrary('Lord of the Rings', 'Tolkien', 450, true);
