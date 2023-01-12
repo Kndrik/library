@@ -42,9 +42,7 @@ function getBookHtml(book) {
             <div class="author">${book.author}</div>
             <div class="pages">${book.pages} <span>pages</span></div>
         </div>
-        <div class="bottom">
-            <button class="readButton" onclick="changeReadStatus(${index})"></button> 
-        </div>
+        <button class="readButton" onclick="changeReadStatus(${index})"></button> 
     </div>`
     return htmlCard;
 }
@@ -58,7 +56,7 @@ function openBookForm() {
         <form>
             <div class="top">
                 <input class="book-title" type="text" name="bookname" id="bookname" placeholder="Book name" required>
-                <input class="author" type="text" name="author" id="author" placeholder="Author" required>
+                <input class="author" type="text" name="author" id="author" placeholder="Author" maxlength="30" required>
                 <input class="pages" type="number" name="pages" id="pages" placeholder="Page count" required>
             </div>
             <div class="bottom">
