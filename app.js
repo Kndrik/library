@@ -112,8 +112,6 @@ function changeReadStatus(index) {
     bookCard.classList.toggle('read');
 }
 
-addBookToLibrary('La Peste', 'Albert Camus', 336, true);
 addBookToLibrary('Les Misérables', 'Victor Hugo', 1662, false);
-addBookToLibrary('1984', 'George Orwell', 400, true);
 
 createCards();
