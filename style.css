@@ -7,6 +7,7 @@ html {
     --main-background-color: rgb(210, 212, 231);
     --text-color: black;
     --background-color: white;
+    --read-card-color: rgb(190, 193, 218);
     color: var(--text-color);
     background-color: var(--background-color);
 }
@@ -90,6 +91,10 @@ body {
     position: relative;
 }
 
+.card.read {
+    background-color: var(--read-card-color);
+}
+
 .card.form {
     border: 2px solid var(--main-pop-color);
 }
@@ -105,6 +110,36 @@ form {
     display: flex;
     justify-content: flex-end;
 }
+
+.card .bottom button.readButton {
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    height: 30px;
+    width: 120px;
+    border-radius: 15px;
+    color: white;
+    font-weight: bold;
+}
+
+.card:hover .bottom button.readButton:hover {
+    background-color: var(--main-darker-color);
+    cursor: pointer;
+}
+
+.card:hover .bottom button.readButton:after {
+    content: 'Mark as read';
+}
+
+.card.read:hover .bottom button.readButton:after {
+    content: 'Not read';
+}
+
+.card:hover .bottom button.readButton {
+    background-color: rgb(128, 128, 134);
+}
+
+
 
 .card form .bottom {
     display: flex;
@@ -170,7 +205,7 @@ button.confirm {
     border: none;
     background-color: var(--main-pop-color);
     color: white;
-    font-weight: 500;
+    font-weight: 700;
     font-size: 14px;
     height: 30px;
     border-radius: 15px;

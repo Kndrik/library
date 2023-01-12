@@ -21,6 +21,7 @@ function addBookToLibrary(title, author, pages, read) {
 
 function createCards() {
     for (let i = 0; i < myLibrary.length; i++) {
+        if (myLibrary[i] === null) continue;
         createBookCard(myLibrary[i]);
     }
 }
@@ -34,7 +35,7 @@ function createBookCard(book) {
 function getBookHtml(book) {
     const index = myLibrary.findIndex((value) => value.title === book.title && value.pages === book.pages);
     const htmlCard = 
-    `<div class="card" index="${index}">
+    `<div class="card ${book.read ? 'read' : ''}" index="${index}">
         <button class="material-symbols-outlined close" index="${index}" onclick="removeBook(${index})">close</button>
         <div class="top">
             <div class="book-title">${book.title}</div>
@@ -42,8 +43,7 @@ function getBookHtml(book) {
             <div class="pages">${book.pages} <span>pages</span></div>
         </div>
         <div class="bottom">
-            <label for="${book.title}ID">Read</label>
-            <input type="checkbox" name="read" id="${book.title}ID" index="${index}" ${book.read ? 'checked' : 'unchecked'}>
+            <button class="readButton" onclick="changeReadStatus(${index})"></button> 
         </div>
     </div>`
     return htmlCard;
@@ -105,8 +105,14 @@ function removeForm() {
     document.querySelector('.card.form').remove();
 }
 
-addBookToLibrary('Lord of the Rings', 'Tolkien', 450, true);
-addBookToLibrary('Spider-man', 'Marvel', 57, false);
-addBookToLibrary('1984', 'George Orwell', 423, true);
+function changeReadStatus(index) {
+    myLibrary[index].read = myLibrary[index].read ? false : true;
+    const bookCard = document.querySelector(`.card[index='${index}']`);
+    bookCard.classList.toggle('read');
+}
+
+addBookToLibrary('La Peste', 'Albert Camus', 336, true);
+addBookToLibrary('Les Misérables', 'Victor Hugo', 1662, false);
+addBookToLibrary('1984', 'George Orwell', 400, true);
 
 createCards();
