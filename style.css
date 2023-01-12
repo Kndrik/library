@@ -118,12 +118,12 @@ form {
     height: 30px;
     width: 120px;
     border-radius: 15px;
-    color: white;
     font-weight: bold;
 }
 
 .card:hover .bottom button.readButton:hover {
     background-color: var(--main-darker-color);
+    color: white;
     cursor: pointer;
 }
 
@@ -136,7 +136,9 @@ form {
 }
 
 .card:hover .bottom button.readButton {
-    background-color: rgb(128, 128, 134);
+    color: black;
+    background-color: transparent;
+    border: 2px solid var(--main-pop-color);
 }
 
 

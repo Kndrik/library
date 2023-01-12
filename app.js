@@ -106,7 +106,8 @@ function removeForm() {
 }
 
 function changeReadStatus(index) {
-    myLibrary[index].read = myLibrary[index].read ? false : true;
+    const isRead = myLibrary[index].read;
+    myLibrary[index].read = isRead ? false : true;
     const bookCard = document.querySelector(`.card[index='${index}']`);
     bookCard.classList.toggle('read');
 }
